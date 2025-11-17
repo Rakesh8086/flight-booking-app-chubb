@@ -1,0 +1,22 @@
+# Compiled class files
+*.class
+
+# Package Files (Maven/Gradle)
+target/
+build/
+
+# Log Files
+*.log
+log/
+temp/
+
+# IDE files (Eclipse/STS)
+.classpath
+.project
+.settings/
+
+# STS/Eclipse specific files
+.metadata
+bin/
+tmp/
+out/
