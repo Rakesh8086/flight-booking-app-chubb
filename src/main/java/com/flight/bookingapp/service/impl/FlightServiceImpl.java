@@ -6,6 +6,7 @@ import com.flight.bookingapp.repository.FlightRepository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,10 @@ public class FlightServiceImpl implements FlightService {
                 scheduleDate, 
                 0 // show flights with 1 or more available seats
         );
+    }
+    
+    @Override
+    public Optional<Flight> getFlightById(Long flightId) {
+        return flightRepository.findById(flightId);
     }
 }
