@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.flight.bookingapp.exception.BookingNotFoundException;
+import com.flight.bookingapp.exception.CancellationNotPossibleException;
 import com.flight.bookingapp.exception.FlightUnavailableException;
 
 import java.util.HashMap;
@@ -62,6 +63,11 @@ public class GlobalErrorHandler {
 
     @ExceptionHandler(FlightUnavailableException.class)
     public ResponseEntity<String> handleFlightUnavailableException(FlightUnavailableException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(CancellationNotPossibleException.class)
+    public ResponseEntity<String> handleCancellationNotPossibleException(CancellationNotPossibleException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
