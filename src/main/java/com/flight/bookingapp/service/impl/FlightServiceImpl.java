@@ -3,6 +3,10 @@ package com.flight.bookingapp.service.impl;
 import com.flight.bookingapp.service.FlightService;
 import com.flight.bookingapp.entity.Flight;
 import com.flight.bookingapp.repository.FlightRepository;
+
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +22,15 @@ public class FlightServiceImpl implements FlightService {
     	flight.setAvailableSeats(flight.getTotalSeats());
         
         return flightRepository.save(flight);
+    }
+    
+    @Override
+    public List<Flight> searchFlights(String fromPlace, String toPlace, LocalDate scheduleDate) {
+        return flightRepository.findByFromPlaceAndToPlaceAndScheduleDateAndAvailableSeatsGreaterThan(
+                fromPlace, 
+                toPlace, 
+                scheduleDate, 
+                0 // show flights with 1 or more available seats
+        );
     }
 }

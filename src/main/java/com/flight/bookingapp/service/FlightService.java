@@ -1,10 +1,16 @@
 package com.flight.bookingapp.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import com.flight.bookingapp.entity.Flight;
 
 public interface FlightService {
 
     // used for adding flight
     Flight addFlight(Flight flight);
+    
+    // for searching flights
+    List<Flight> searchFlights(String fromPlace, String toPlace, LocalDate scheduleDate);
 
 }
