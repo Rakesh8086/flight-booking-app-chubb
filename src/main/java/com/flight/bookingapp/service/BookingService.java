@@ -7,5 +7,6 @@ public interface BookingService {
     // used for the ticket booking process. 
 	// Booking object contains passenger details
     Booking bookTicket(Long flightId, Booking booking);
-
+    
+    Booking getTicketByPnr(String pnr);
 }

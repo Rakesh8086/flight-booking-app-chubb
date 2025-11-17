@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.flight.bookingapp.entity.Booking;
 import com.flight.bookingapp.entity.Flight;
 import com.flight.bookingapp.entity.Passenger;
+import com.flight.bookingapp.exception.BookingNotFoundException;
 import com.flight.bookingapp.exception.FlightUnavailableException;
 import com.flight.bookingapp.repository.BookingRepository;
 import com.flight.bookingapp.service.BookingService;
@@ -88,4 +89,9 @@ public class BookingServiceImpl implements BookingService {
         return "CHUBBFLIGHT" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
     }
     
+    @Override
+    public Booking getTicketByPnr(String pnr) {
+        return bookingRepository.findByPnr(pnr)
+                .orElseThrow(() -> new BookingNotFoundException("Ticket with PNR " + pnr + " not found."));
+    }
 }
