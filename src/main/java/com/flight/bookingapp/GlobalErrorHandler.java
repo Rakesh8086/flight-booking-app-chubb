@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.flight.bookingapp.exception.BookingNotFoundException;
+import com.flight.bookingapp.exception.FlightUnavailableException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,5 +53,15 @@ public class GlobalErrorHandler {
     public ResponseEntity<Object> handleResponseStatusException(ResponseStatusException ex, WebRequest request) {
         // Return a reason for the exception
         return new ResponseEntity<>(ex.getReason(), ex.getStatusCode());
+    }
+    
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<String> handleBookingNotFoundException(BookingNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FlightUnavailableException.class)
+    public ResponseEntity<String> handleFlightUnavailableException(FlightUnavailableException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
