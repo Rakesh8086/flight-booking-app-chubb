@@ -1,5 +1,7 @@
 package com.flight.bookingapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -24,6 +26,7 @@ public class Passenger {
     // Relationship to Booking Entity (Many Passengers belong to One Booking)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pnr_fk", nullable = false) 
+    @JsonBackReference
     private Booking booking; // stores pnr as foreign key from passengers table
 
     public Passenger() {

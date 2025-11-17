@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "bookings")
 public class Booking {
@@ -46,6 +48,7 @@ public class Booking {
     // CascadeType.ALL ensures that if a Booking is deleted, its Passengers are also deleted.
     // Passenger entity owns the relationship
     @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Passenger> passengers;
 
     public Booking() {
