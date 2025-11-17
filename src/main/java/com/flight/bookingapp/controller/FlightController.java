@@ -50,5 +50,5 @@ public class FlightController {
 
         return new ResponseEntity<>(matchingFlights, HttpStatus.OK);
     }
- 
+    
 }

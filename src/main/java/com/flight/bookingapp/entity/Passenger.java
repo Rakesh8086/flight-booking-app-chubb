@@ -1,6 +1,7 @@
 package com.flight.bookingapp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -15,7 +16,7 @@ public class Passenger {
     private String name;    
     @NotBlank
     private String gender;  
-    @NotBlank
+    @Min(value = 0)
     private Integer age;    
     @NotBlank
     private String seatNumber;
