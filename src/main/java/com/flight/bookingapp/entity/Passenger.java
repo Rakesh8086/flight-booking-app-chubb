@@ -1,6 +1,7 @@
 package com.flight.bookingapp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "passengers")
@@ -9,10 +10,14 @@ public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @NotBlank
     private String name;    
+    @NotBlank
     private String gender;  
+    @NotBlank
     private Integer age;    
+    @NotBlank
     private String seatNumber;
 
     // Relationship to Booking Entity (Many Passengers belong to One Booking)
