@@ -39,4 +39,9 @@ public class FlightServiceImpl implements FlightService {
     public Optional<Flight> getFlightById(Long flightId) {
         return flightRepository.findById(flightId);
     }
+    
+    @Override
+    public Flight updateFlightInventory(Flight flight) {
+        return flightRepository.save(flight);
+    }
 }

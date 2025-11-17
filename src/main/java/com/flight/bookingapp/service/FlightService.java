@@ -16,5 +16,7 @@ public interface FlightService {
     
     // get flight by its ID
     Optional<Flight> getFlightById(Long flightId);
-
+    
+    // to update flight seats after booking tickets
+    Flight updateFlightInventory(Flight flight);
 }
