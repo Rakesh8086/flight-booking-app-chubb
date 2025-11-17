@@ -94,4 +94,16 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepository.findByPnr(pnr)
                 .orElseThrow(() -> new BookingNotFoundException("Ticket with PNR " + pnr + " not found."));
     }
+    
+    @Override
+    public List<Booking> getBookingHistoryByEmail(String emailId) {
+        List<Booking> history = bookingRepository.findByUserEmailOrderByBookingDateDesc(emailId);
+        
+        if(history.isEmpty()) {
+            throw new BookingNotFoundException(
+            		"No booking history found for email: " + emailId);
+        }
+        
+        return history;
+    }
 }

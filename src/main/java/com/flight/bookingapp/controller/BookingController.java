@@ -75,4 +75,13 @@ public class BookingController {
         
         return new ResponseEntity<>(booking, HttpStatus.OK);
     }
+    
+    @GetMapping("/booking/history/{emailId}")
+    public ResponseEntity<List<Booking>> getBookingHistoryByEmail(
+    		@PathVariable String emailId){
+    	
+    	List<Booking> history = bookingService.getBookingHistoryByEmail(emailId);
+    	
+    	return new ResponseEntity<>(history, HttpStatus.OK);
+    }
 }

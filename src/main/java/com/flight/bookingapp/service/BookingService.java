@@ -1,5 +1,7 @@
 package com.flight.bookingapp.service;
 
+import java.util.List;
+
 import com.flight.bookingapp.entity.Booking;
 
 public interface BookingService {
@@ -9,4 +11,6 @@ public interface BookingService {
     Booking bookTicket(Long flightId, Booking booking);
     
     Booking getTicketByPnr(String pnr);
+    
+    List<Booking> getBookingHistoryByEmail(String emailId);
 }
