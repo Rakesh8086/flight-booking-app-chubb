@@ -13,4 +13,6 @@ public interface BookingService {
     Booking getTicketByPnr(String pnr);
     
     List<Booking> getBookingHistoryByEmail(String emailId);
+    
+    void cancelTicket(String pnr);
 }

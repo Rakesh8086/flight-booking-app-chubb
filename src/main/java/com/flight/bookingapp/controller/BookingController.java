@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,5 +84,14 @@ public class BookingController {
     	List<Booking> history = bookingService.getBookingHistoryByEmail(emailId);
     	
     	return new ResponseEntity<>(history, HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/booking/cancel/{pnr}")
+    public ResponseEntity<String> cancelTicket(@PathVariable String pnr) {
+        
+        bookingService.cancelTicket(pnr);
+        
+        return new ResponseEntity<>("Ticket with PNR " + pnr + 
+        		" cancelled successfully.", HttpStatus.OK);
     }
 }
